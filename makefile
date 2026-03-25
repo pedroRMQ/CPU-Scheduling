@@ -1,16 +1,28 @@
 CC = gcc
+CFLAGS = -Wall -Wextra -g -Iinclude
 
-CFLAGS = -Wall -Wextra
+SRC = src/main.c src/task.c
+OBJ = objects/main.o objects/task.o
 
-EXECS = rate edf
+all: rate edf
 
-all: $(EXECS)
+rate: CFLAGS += -DRATE
+rate: $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o rate
 
-rate: rate.c
-	$(CC) $(CFLAGS) rate.c -o rate
+edf: CFLAGS += -DEDF
+edf: $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o edf
 
-edf: edf.c
-	$(CC) $(CFLAGS) edf.c -o edf
+objects/%.o: src/%.c
+	mkdir -p objects
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(EXECS) *.out *.o
+	rm -rf objects rate edf
+
+test-rate: rate
+	./rate input.txt
+
+test-edf: edf
+	./edf input.txt
