@@ -7,9 +7,9 @@ typedef struct {
     int burst;
     
     
-    int remaining_burst;
-    int next_deadline;
-    int arrival_time;
+    int remainingBurst;
+    int nextDeadline;
+    int arrivalTime;
     
 } Task;
 
