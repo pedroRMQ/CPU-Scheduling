@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "file.h"
+#include "task.h"
 
 FILE *checkFileFormat(int argc, char *argv[], int *total_time) {
     if (argc != 2) {
@@ -21,6 +23,12 @@ FILE *checkFileFormat(int argc, char *argv[], int *total_time) {
         exit(1);
     }
     return file;
+}
+
+void defineTask(Task *task, char *name, int period, int burst, int i) {
+    strcpy(task[i].name, name);
+    task[i].period = period;
+    task[i].burst = burst;
 }
 
 int qntdTasks(FILE *file) {

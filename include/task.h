@@ -6,10 +6,12 @@ typedef struct {
     int period;
     int burst;
     
-    
     int remainingBurst;
     int nextDeadline;
-    int arrivalTime;
+
+    int lost_deadlines;
+    int complete_execution;
+    int killed;
     
 } Task;
 
